@@ -38,6 +38,8 @@ export class OrganizationsTable1729443652837 implements MigrationInterface {
         }
       ]
     })
+
+    await queryRunner.createTable(table);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

@@ -21,6 +21,11 @@ export class OrganizationsMembersTable1729443875447 implements MigrationInterfac
           type: 'bigint',
         },
         {
+          name: 'is_owner',
+          type: 'boolean',
+          default: false,
+        },
+        {
           name: 'role',
           type: 'varchar',
         },
@@ -50,6 +55,8 @@ export class OrganizationsMembersTable1729443875447 implements MigrationInterfac
         }
       ]
     })
+
+    await queryRunner.createTable(table);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

@@ -1,6 +1,5 @@
-import { AfterLoad, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { AfterLoad, Column, Entity, OneToMany } from "typeorm";
 import { Session } from "./session.entity";
-import { OrganizationMember } from "src/infrastructure/database/entities/organization-members.entity";
 import { VerificationToken } from "./verification-token.entity";
 import { AggregateRoot } from "src/domain/shared/aggregate-root";
 
@@ -29,9 +28,6 @@ export class User extends AggregateRoot {
     eager: true,
   })
   verificationTokens: VerificationToken[];
-
-  // @OneToMany(() => OrganizationMember, member => member.user)
-  // organizations: OrganizationMember[];
 
   @AfterLoad()
   protected afterLoad() {

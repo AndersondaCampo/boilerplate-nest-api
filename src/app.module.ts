@@ -15,6 +15,7 @@ import { DatabaseModule } from './infrastructure/database/database.module';
 import typeorm from './infrastructure/database/config/typeorm';
 import { SharedModule } from './domain/shared/shared.module';
 import { JwtModule } from '@nestjs/jwt';
+import { OrganizationsModule } from './domain/organization/organizations.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { JwtModule } from '@nestjs/jwt';
     // domain modules
     SharedModule,
     UsersModule,
+    OrganizationsModule,
 
     // integrations modules
     EmailModule,
@@ -64,6 +66,9 @@ import { JwtModule } from '@nestjs/jwt';
             type: 'exponential',
             delay: 5000,
           },
+        },
+        metrics: {
+          maxDataPoints: 500,
         },
       }),
       inject: [ConfigService],

@@ -32,6 +32,20 @@ export class UsersService {
     return user;
   }
 
+  async create(dto: { email: string; name?: string }) {
+    const user = this.repository.create(dto);
+    await this.repository.save(user);
+    return user;
+  }
+
+  async update(dto: { id: string; email: string; name: string }) {
+    const user = await this.findByIdOrEmail({ id: dto.id });
+    user.email = dto.email;
+    user.name = dto.name;
+    await this.repository.save(user);
+    return user;
+  }
+
   async createVerificationToken(email: string) {
     const expiration = moment().add(1, 'hour').toDate();
     const token = crypto.randomBytes(32).toString('hex');
